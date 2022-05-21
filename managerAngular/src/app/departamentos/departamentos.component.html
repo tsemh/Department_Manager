@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-evenly my-5">
+  <app-titulo [title]='title'></app-titulo>
+  <button class="btn btn-success" (click)="novoDepartAbreModal(template)">Novo Departamento</button>
+</div>
+  
+  <table class="table table-hover">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">Visualizar</th>
+        <th scope="col"># ID do departamento</th>
+        <th scope="col">Sigla do departamento</th>
+        <th scope="col">Nome do departamento</th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let departamento of departamentos">
+        <th scope="row">
+          <button class="btn btn-outline-warning text-dark" (click)="departEIdRedireciona(departamento)" >Entrar</button>
+        </th>
+        <td >{{ departamento.id }}</td>
+          <td>{{ departamento.sigla }}</td>
+          <td>{{ departamento.nome }}</td>
+          <td class="btn-group">
+            <button class="btn btn-outline-secondary" (click)="selecionaDepartAbreModal(departamento, template)">Editar</button>
+            <button class="btn btn-outline-danger" (click)="deletarDepartamento(departamento.id)">Deletar</button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #template>
+      <div class="modal-header">
+        <app-titulo [title]="'#'+departSelecionado.id+' - '+departSelecionado.nome"></app-titulo>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        </button>
+    </div>
+
+    <div class="modal-body">
+    
+      <form [formGroup]="departamentoForm">
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome" >
+        </div>
+                
+        <div class="d-flex justify-content-end">
+          <div class="col-sm-6 d-flex justify-content-end">
+            <button *ngIf="departSelecionado.id !== 0 " type="submit" class="btn btn-success" [disabled]="!departamentoForm.valid" (click)="editarSubmit()" (click)="modalRef?.hide()" >Enviar</button>
+
+            <button *ngIf="departSelecionado.id === 0 " type="submit" class="btn btn-success" [disabled]="!departamentoForm.valid" (click)="criarSubmit()" (click)="modalRef?.hide()" >Enviar</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+</ng-template>
+
+
