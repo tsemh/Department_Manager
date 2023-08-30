@@ -1,15 +1,7 @@
 # Department Manager
 
 ## Status do projeto
-Para finalizar o projeto restam apenas 3 'tasks' não concluídas.
- 
-1. O método "get" de funcionarios não foi finalizado. Só é possível alterar a lista de funcionarios de acordo com o departamento alterando o valor da variável "idDepartamento" no arquivo "funcionarios.component.ts".
-
-2. Não é possível alterar a imagem do funcionário.
-
-3. A sigla do departamento não foi concluída.
-
-
+Finalizado
 
 ## Pré-requisitos
 
